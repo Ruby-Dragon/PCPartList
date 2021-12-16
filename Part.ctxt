@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Part()
+comment1.params=_name\ _cost
+comment1.target=Part(java.lang.String,\ float)
+comment2.params=
+comment2.target=java.lang.String\ toString()
+comment3.params=
+comment3.target=java.lang.String\ getName()
+comment4.params=
+comment4.target=float\ getCost()
+comment5.params=_name
+comment5.target=void\ setName(java.lang.String)
+comment6.params=_cost
+comment6.target=void\ setCost(float)
+numComments=7

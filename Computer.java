@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Computer
 {
   private ArrayList<Part> partsList;
@@ -33,32 +35,36 @@ public class Computer
   public void setPartsList(ArrayList<Part> _list)
   {
     partsList = _list;
-    cost = _list.getCost();
+    float tempCost = 0.0f;
+    for (int i=0; i < _list.size(); i++)
+    {
+      tempCost += _list.get(i).getCost();
+    }
   }
 
   public void addPartToList(Part _part)
   {
     partsList.add(_part);
-    cost += _part.getCost();
+    totalCost += _part.getCost();
   }
 
   public String toString()
   {
-    String final = "";
+    String finalStr = "";
 
-    for(int i = 0; i < partsList.size(), i++)
+    for(int i=0; i < partsList.size(); i++)
     {
-      final += partsList[i];
+      finalStr += partsList.get(i);
       if (i + 1 != partsList.size())
       {
-        final += ", ";
+        finalStr += ", ";
       }
       else
       {
-        final += ".";
+        finalStr += ".";
       }
     }
 
-    return final;
+    return finalStr;
   }
 }
