@@ -1,15 +1,15 @@
 public class Computer
 {
-  private Part[] partsList;
+  private ArrayList<Part> partsList;
   private float totalCost;
 
   public Computer()
   {
-    partsList = {};
+    partsList = new ArrayList<Part>();
     totalCost = 0.0f;
   }
 
-  public Computer(Part[] _list, float _cost)
+  public Computer(ArrayList<Part> _list, float _cost)
   {
     partsList = _list;
     totalCost = _cost;
@@ -20,7 +20,7 @@ public class Computer
     return totalCost;
   }
 
-  public Part[] getPartsList()
+  public ArrayList<Part> getPartsList()
   {
     return partsList;
   }
@@ -30,19 +30,26 @@ public class Computer
     totalCost = _cost;
   }
 
-  public void setPartsList(Part[] _list)
+  public void setPartsList(ArrayList<Part> _list)
   {
     partsList = _list;
+    cost = _list.getCost();
+  }
+
+  public void addPartToList(Part _part)
+  {
+    partsList.add(_part);
+    cost += _part.getCost();
   }
 
   public String toString()
   {
     String final = "";
 
-    for(int i = 0; i < partsList.length, i++)
+    for(int i = 0; i < partsList.size(), i++)
     {
       final += partsList[i];
-      if (i + 1 != partsList.length)
+      if (i + 1 != partsList.size())
       {
         final += ", ";
       }
