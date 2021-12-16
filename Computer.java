@@ -1,4 +1,37 @@
 public class Computer
 {
-  
+  private Part[] partsList;
+  private float totalCost;
+
+  public Computer()
+  {
+    partsList = {};
+    totalCost = 0;
+  }
+
+  public Computer(Part[] _list, float _cost)
+  {
+    partsList = _list;
+    totalCost = _cost;
+  }
+
+  public float getCost()
+  {
+    return totalCost;
+  }
+
+  public Part[] getPartsList()
+  {
+    return partsList;
+  }
+
+  public void setCost(float _cost)
+  {
+    totalCost = _cost;
+  }
+
+  public void setPartsList(Part[] _list)
+  {
+    partsList = _list;
+  }
 }
