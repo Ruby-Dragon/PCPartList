@@ -34,4 +34,24 @@ public class Computer
   {
     partsList = _list;
   }
+
+  public String toString()
+  {
+    String final = "";
+
+    for(int i = 0; i < partsList.length, i++)
+    {
+      final += partsList[i];
+      if (i + 1 != partsList.length)
+      {
+        final += ", ";
+      }
+      else
+      {
+        final += ".";
+      }
+    }
+
+    return final;
+  }
 }
