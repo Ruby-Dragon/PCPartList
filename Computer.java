@@ -6,7 +6,7 @@ public class Computer
   public Computer()
   {
     partsList = {};
-    totalCost = 0;
+    totalCost = 0.0f;
   }
 
   public Computer(Part[] _list, float _cost)
