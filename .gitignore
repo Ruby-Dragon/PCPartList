@@ -25,3 +25,6 @@ replay_pid*
 
 #bluej files
 *.bluej
+
+#PC list storage files
+*.lst
