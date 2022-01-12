@@ -86,14 +86,14 @@ public class Computer
   {
     String finalStr = "";
 
-		finalStr += name + ", $" + totalCost + ", wattage: " + totalPowerDraw + "w. \n"; 
+		finalStr += name + ", $" + totalCost + ", wattage: " + totalPowerDraw + "w. \nParts: \n"; 
 
     for(int i=0; i < partsList.size(); i++)
     {
-      finalStr += partsList.get(i);
+      finalStr += "	- " + partsList.get(i);
       if (i + 1 != partsList.size())
       {
-        finalStr += ", ";
+        finalStr += "\n";
       }
       else
       {
