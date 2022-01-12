@@ -4,22 +4,63 @@ public class Computer
 {
   private ArrayList<Part> partsList;
   private float totalCost;
+	private float totalPowerDraw;
+	private String name;
 
   public Computer()
   {
     partsList = new ArrayList<Part>();
     totalCost = 0.0f;
+		name = "";
+		totalPowerDraw = 0.0f;
   }
 
-  public Computer(ArrayList<Part> _list, float _cost)
+  public Computer(ArrayList<Part> _list, String _name)
   {
     partsList = _list;
-    totalCost = _cost;
+    recalculateCost();
+		name = _name;
+		recalculatePowerDraw();
   }
+
+	public String getName()
+	{
+		return name;
+	}
+
+	public void setName(String _name)
+	{
+		name = _name;
+	}
+
+	public float getTotalPowerDraw()
+	{
+		return totalPowerDraw;
+	}
+
+	public void recalculatePowerDraw()
+	{
+		float sum = 0;
+		for (Part currentPart : partsList)
+		{
+			sum += currentPart.getPowerDraw();
+		}
+		totalPowerDraw = sum;
+	}
 
   public float getCost()
   {
     return totalCost;
+  }
+
+ 	public void recalculateCost()
+  {
+    float sum = 0;
+		for (Part currentPart : partsList)
+		{
+			sum += currentPart.getCost();
+		}
+		totalCost = sum;
   }
 
   public ArrayList<Part> getPartsList()
@@ -27,30 +68,25 @@ public class Computer
     return partsList;
   }
 
-  public void setCost(float _cost)
-  {
-    totalCost = _cost;
-  }
-
   public void setPartsList(ArrayList<Part> _list)
   {
     partsList = _list;
-    float tempCost = 0.0f;
-    for (int i=0; i < _list.size(); i++)
-    {
-      tempCost += _list.get(i).getCost();
-    }
+    recalculateCost();
+		recalculatePowerDraw();
   }
 
   public void addPartToList(Part _part)
   {
     partsList.add(_part);
-    totalCost += _part.getCost();
+    recalculateCost();
+		recalculatePowerDraw();
   }
 
   public String toString()
   {
     String finalStr = "";
+
+		finalStr += name + ", $" + totalCost + ", wattage: " + totalPowerDraw + "w. \n"; 
 
     for(int i=0; i < partsList.size(); i++)
     {
