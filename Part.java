@@ -1,9 +1,11 @@
 public class Part
 {
+	//variables
   private String name;
   private float cost;
 	private float powerDraw;
 
+	//constructors
   public Part()
   {
     name = "";
@@ -18,11 +20,13 @@ public class Part
 		powerDraw = _power;
   }
 
+	//toString override
   public String toString()
   {
     return name + ", Price: $" + cost + ", Power Draw: " + powerDraw + "w";
   }
 
+	//getters and setters
   public String getName()
   {
     return name;
@@ -42,4 +46,14 @@ public class Part
   {
     cost = _cost;
   }
+
+	public void setPowerDraw(float _power)
+	{
+		powerDraw = _power;
+	}
+
+	public float getPowerDraw()
+	{
+		return powerDraw;
+	}
 }
