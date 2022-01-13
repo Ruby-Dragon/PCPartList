@@ -10,6 +10,9 @@ public class Main
 		comp.addPartToList(gpu);
 		comp.setName("comp");
 
+		Storage.openFile("urmom.lst");
+		Storage.writeFile(comp);
+
     System.out.println(comp);
   }
 }
