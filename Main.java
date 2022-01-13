@@ -12,8 +12,7 @@ public class Main
 
 		Storage.openFile("urmom.lst");
 		Storage.writeFile(comp);
-		Storage.encode(comp);
 
-    //System.out.println(comp);
+    System.out.println(Storage.encode(comp));
   }
 }

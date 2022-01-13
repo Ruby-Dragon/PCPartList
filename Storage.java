@@ -83,9 +83,20 @@ public class Storage
 		String finalStr = "";
 		//add 3 line header of Computer information
 		finalStr += _pc.getName() + "\n" + _pc.getCost() + "\n" + _pc.getTotalPowerDraw() + "\n";
-		System.out.println(finalStr);
+		//System.out.print(finalStr);
 
+		//part in encoded form
+		String encodedPart = "";
 		//encode parts list
+		for (Part currentPart : _pc.getPartsList())
+		{
+			encodedPart = "";
+			//add part vars separated by a /t on one line
+			encodedPart += currentPart.getName() + "\t" + currentPart.getCost() + "\t" + currentPart.getPowerDraw() + "\t\n";
+			//add part to final string
+			finalStr += encodedPart;
+			//System.out.print(encodedPart);
+		}
 
 		return finalStr;
 	}

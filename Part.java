@@ -71,4 +71,14 @@ public class Part
 	{
 		return powerDraw;
 	}
+
+	public String getRetailLink()
+	{
+		return retailLink;
+	}
+
+	public void setRetailLink(String _link)
+	{
+		retailLink = _link;
+	}
 }
