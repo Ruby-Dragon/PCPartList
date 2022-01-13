@@ -28,3 +28,6 @@ replay_pid*
 
 #PC list storage files
 *.lst
+
+#breakpoints
+.breakpoints
