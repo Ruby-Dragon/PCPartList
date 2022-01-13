@@ -103,6 +103,72 @@ public class Storage
 
 	public static Computer decode(String _pc)
 	{
+		//last index iterated through by decoder
+		int lastIndex = 0;
+
+		//Decode name
+		String name = "";
+		//iterate until \n
+		for (int i = 0; i < _pc.length(); i++)
+		{
+			//break at \n
+			if (_pc.charAt(i) == '\n')
+			{
+				lastIndex = i;
+				break;
+			}
+			else
+			{
+				//add character to name string
+				name += _pc.charAt(i);
+			}
+		}
+		System.out.println(name);
+
+		//Decode price
+		String priceString = "";
+		float price = 0.0f;
+		//iterate through string
+		for (int i = lastIndex + 1; i < _pc.length(); i++)
+		{
+			//break at \n
+			if (_pc.charAt(i) == '\n')
+			{
+				lastIndex = i;
+				break;
+			}
+			else
+			{
+				//add character to name string
+				priceString += _pc.charAt(i);
+			}
+		}
+		price = Float.parseFloat(priceString);
+		System.out.println(price);
+
+		//Decode powerDraw
+		String powerString = "";
+		float powerDraw = 0.0f;
+		//iterate through string
+		for (int i = lastIndex + 1; i < _pc.length(); i++)
+		{
+			//break at \n
+			if (_pc.charAt(i) == '\n')
+			{
+				lastIndex = i;
+				break;
+			}
+			else
+			{
+				//add character to name string
+				powerString += _pc.charAt(i);
+			}
+		}
+		powerDraw = Float.parseFloat(powerString);
+		System.out.println(powerDraw);
+
+		//Decode Parts
+
 		return new Computer();
 	}
 }

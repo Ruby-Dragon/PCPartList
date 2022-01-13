@@ -14,5 +14,7 @@ public class Main
 		Storage.writeFile(comp);
 
     System.out.println(Storage.encode(comp));
+
+		Storage.decode(Storage.encode(comp));
   }
 }
