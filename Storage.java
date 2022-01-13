@@ -14,19 +14,26 @@ public class Storage
 
 	public static void writeFile(Computer _save)
 	{
+		//if a computer file is open
 		if (currentFile != null)
 		{
+				//if the file exists, use that, if it doesn't, make one
 				if (currentFile.exists())
 				{
+					//check for errors
 					try
 					{
+						//create a writer
 						FileWriter write = new FileWriter(currentFile);
+						//write information into file
 						write.write("ur mom");
+						//close writer
 						write.close();
 						return;
 					}
 					catch (IOException e)
 					{
+						//write failed
 						System.out.println("Write failed with IOException");
 						return;
 					}
@@ -35,24 +42,31 @@ public class Storage
 				{
 					try
 					{
+						//create a new file with the opened file name
 						currentFile.createNewFile();
+						//create writer
 						FileWriter write = new FileWriter(currentFile);
+						//write information into file
 						write.write("ur mom");
+						//close writer
 						write.close();
 						return;
 					}
 					catch (IOException e)
 					{
+						//write error
 						System.out.println("Write failed with IOException");
 						return;
 					}
 			}
 		}
+		//if the file was never opened
 		System.out.println("File not opened");
 	}
 
 	public static Computer readFile()
 	{
+		//needs encode and decode to be done first
 		if (currentFile != null)
 		{
 			if (currentFile.canRead())
@@ -63,5 +77,21 @@ public class Storage
 		System.out.println("File not opened");
 		return new Computer();
 	}
-}
 
+	public static String encode(Computer _pc)
+	{
+		String finalStr = "";
+		//add 3 line header of Computer information
+		finalStr += _pc.getName() + "\n" + _pc.getCost() + "\n" + _pc.getTotalPowerDraw() + "\n";
+		System.out.println(finalStr);
+
+		//encode parts list
+
+		return finalStr;
+	}
+
+	public static Computer decode(String _pc)
+	{
+		return new Computer();
+	}
+}
