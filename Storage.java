@@ -1,7 +1,7 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-
+import java.util.ArrayList;
 
 public class Storage
 {
@@ -103,6 +103,9 @@ public class Storage
 
 	public static Computer decode(String _pc)
 	{
+		long lines = _pc.lines().count();
+		System.out.println(lines); 
+
 		//last index iterated through by decoder
 		int lastIndex = 0;
 
@@ -168,6 +171,29 @@ public class Storage
 		System.out.println(powerDraw);
 
 		//Decode Parts
+		ArrayList<Part> partsArray = new ArrayList<Part>();
+		for (int i = 0; i < lines -3; i++)
+		{
+			String[] constructVars;
+			String lineIn = "";
+			for (int c = lastIndex + 1; c < _pc.length(); c++)
+			{
+				if (_pc.charAt(c) == '\n')
+				{
+					lastIndex = c;
+					break;
+				}
+				else
+				{
+					lineIn += _pc.charAt(c);
+				}
+			}
+			constructVars = lineIn.split("\t", 4);
+			for (int t =0; t < 3; t++)
+			{
+				System.out.print(constructVars[t] + " ");
+			}
+		}
 
 		return new Computer();
 	}
