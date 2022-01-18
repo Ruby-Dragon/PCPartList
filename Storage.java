@@ -92,7 +92,7 @@ public class Storage
 		{
 			encodedPart = "";
 			//add part vars separated by a /t on one line
-			encodedPart += currentPart.getName() + "\t" + currentPart.getCost() + "\t" + currentPart.getPowerDraw() + "\t\n";
+			encodedPart += currentPart.getName() + "\t" + currentPart.getCost() + "\t" + currentPart.getPowerDraw() + "\t" + currentPart.getRetailLink() + "\t\n";
 			//add part to final string
 			finalStr += encodedPart;
 			//System.out.print(encodedPart);
