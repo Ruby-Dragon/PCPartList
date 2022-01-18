@@ -188,11 +188,10 @@ public class Storage
 					lineIn += _pc.charAt(c);
 				}
 			}
+			System.out.println(lineIn);
 			constructVars = lineIn.split("\t", 4);
-			for (int t =0; t < 3; t++)
-			{
-				System.out.print(constructVars[t] + " ");
-			}
+			System.out.println(constructVars[1]);
+			
 		}
 
 		return new Computer();
