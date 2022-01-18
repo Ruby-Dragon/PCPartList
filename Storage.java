@@ -92,7 +92,7 @@ public class Storage
 		{
 			encodedPart = "";
 			//add part vars separated by a /t on one line
-			encodedPart += currentPart.getName() + "\t" + currentPart.getCost() + "\t" + currentPart.getPowerDraw() + "\t" + currentPart.getRetailLink() + "\t\n";
+			encodedPart += currentPart.getName() + "\t" + currentPart.getCost() + "\t" + currentPart.getPowerDraw() + "\t" + currentPart.getRetailLink() + "\n";
 			//add part to final string
 			finalStr += encodedPart;
 			//System.out.print(encodedPart);
@@ -188,7 +188,7 @@ public class Storage
 			
 			float partPrice = Float.parseFloat(constructVars[1]);
 			float power = Float.parseFloat(constructVars[2]);
-			Part temp = new Part(constructVars[0], partPrice, power);
+			Part temp = new Part(constructVars[0], partPrice, power, constructVars[3]);
 			partsArray.add(temp);
 		}
 
