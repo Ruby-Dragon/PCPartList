@@ -103,8 +103,7 @@ public class Storage
 
 	public static Computer decode(String _pc)
 	{
-		long lines = _pc.lines().count();
-		System.out.println(lines); 
+		long lines = _pc.lines().count(); 
 
 		//last index iterated through by decoder
 		int lastIndex = 0;
@@ -126,7 +125,6 @@ public class Storage
 				name += _pc.charAt(i);
 			}
 		}
-		System.out.println(name);
 
 		//Decode price
 		String priceString = "";
@@ -147,7 +145,6 @@ public class Storage
 			}
 		}
 		price = Float.parseFloat(priceString);
-		System.out.println(price);
 
 		//Decode powerDraw
 		String powerString = "";
@@ -168,7 +165,6 @@ public class Storage
 			}
 		}
 		powerDraw = Float.parseFloat(powerString);
-		System.out.println(powerDraw);
 
 		//Decode Parts
 		ArrayList<Part> partsArray = new ArrayList<Part>();
@@ -188,12 +184,14 @@ public class Storage
 					lineIn += _pc.charAt(c);
 				}
 			}
-			System.out.println(lineIn);
 			constructVars = lineIn.split("\t", 4);
-			System.out.println(constructVars[1]);
 			
+			float partPrice = Float.parseFloat(constructVars[1]);
+			float power = Float.parseFloat(constructVars[2]);
+			Part temp = new Part(constructVars[0], partPrice, power);
+			partsArray.add(temp);
 		}
 
-		return new Computer();
+		return new Computer(partsArray, name);
 	}
 }

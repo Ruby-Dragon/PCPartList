@@ -15,6 +15,6 @@ public class Main
 
     System.out.println(Storage.encode(comp));
 
-		Storage.decode(Storage.encode(comp));
+		System.out.println(Storage.decode(Storage.encode(comp)));
   }
 }
