@@ -5,6 +5,7 @@ public class Part
   private float cost;
 	private float powerDraw;
 	private String retailLink;
+	private boolean purchased;
 
 	//constructors
   public Part()
@@ -13,6 +14,7 @@ public class Part
     cost = 0.0f;
 		powerDraw = 0.0f;
 		retailLink = "";
+		purchased = false;
   }
 
   public Part(String _name, float _cost, float _power)
@@ -21,14 +23,16 @@ public class Part
     cost = _cost;
 		powerDraw = _power;
 		retailLink = "";
+		purchased = false;
   }
 
-	public Part(String _name, float _cost, float _power, String _link)
+	public Part(String _name, float _cost, float _power, String _link, boolean _purchased)
   {
     name = _name;
     cost = _cost;
 		powerDraw = _power;
 		retailLink = _link;
+		purchased = _purchased;
   }
 
 	//toString override
@@ -36,9 +40,17 @@ public class Part
   {
 		if (retailLink.equals(""))
 		{
-			return name + ", Price: $" + cost + ", Power Draw: " + powerDraw + "w";
+			if (purchased)
+			{
+				return name + ", Price: $" + cost + ",\t Power Draw: " + powerDraw + "w,\t" + "PURCHASED";
+			}
+			return name + ", Price: $" + cost + ",\t Power Draw: " + powerDraw + "w";
 		}
-    return name + ", Price: $" + cost + ", Power Draw: " + powerDraw + "w, Link: " + retailLink;
+		if (purchased)
+		{
+			return name + ", Price: $" + cost + ",\t Power Draw: " + powerDraw + "w,\t Link: " + retailLink + ",\t PURCHASED";
+		}
+    return name + ", Price: $" + cost + ",\t Power Draw: " + powerDraw + "w,\t Link: " + retailLink;
   }
 
 	//getters and setters
