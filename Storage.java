@@ -1,7 +1,9 @@
 import java.io.File;
+import java.nio.file.Files;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.nio.file.Path;
 
 public class Storage
 {
@@ -26,7 +28,7 @@ public class Storage
 						//create a writer
 						FileWriter write = new FileWriter(currentFile);
 						//write information into file
-						write.write("ur mom");
+						write.write(encode(_save));
 						//close writer
 						write.close();
 						return;
@@ -47,7 +49,7 @@ public class Storage
 						//create writer
 						FileWriter write = new FileWriter(currentFile);
 						//write information into file
-						write.write("ur mom");
+						write.write(encode(_save));
 						//close writer
 						write.close();
 						return;
@@ -71,10 +73,21 @@ public class Storage
 		{
 			if (currentFile.canRead())
 			{
-				return new Computer();
+				String raw;
+				Path fileName = Path.of(currentFile.getName());
+				try
+				{
+					raw = Files.readString(fileName);
+				}
+				catch (IOException e)
+				{
+					e.printStackTrace();
+					return new Computer();
+				}
+				return decode(raw);
 			}
 		}
-		System.out.println("File not opened");
+		System.out.println("File failed to open");
 		return new Computer();
 	}
 
