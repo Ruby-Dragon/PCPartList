@@ -9,12 +9,14 @@ public class Main
 				//windows clear screen
         if (System.getProperty("os.name").contains("Windows"))
 				{
+					//hope this works
 					new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
 				}
         else
 				{
 					//Linux\Unix clear screen (probably the best idea)
-					Runtime.getRuntime().exec("clear");
+					System.out.print("\033[H\033[2J");  
+   				System.out.flush();  
 				} 
     } 
 		catch (IOException | InterruptedException ex) 
