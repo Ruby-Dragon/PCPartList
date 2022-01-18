@@ -36,7 +36,7 @@ public class Storage
 					catch (IOException e)
 					{
 						//write failed
-						System.out.println("Write failed with IOException");
+						e.printStackTrace();
 						return;
 					}
 				}
@@ -68,12 +68,14 @@ public class Storage
 
 	public static Computer readFile()
 	{
-		//needs encode and decode to be done first
+		//if the file can be opened
 		if (currentFile != null)
 		{
 			if (currentFile.canRead())
 			{
+				//raw input
 				String raw;
+				//path of file
 				Path fileName = Path.of(currentFile.getName());
 				try
 				{
@@ -81,6 +83,7 @@ public class Storage
 				}
 				catch (IOException e)
 				{
+					//catch IOException
 					e.printStackTrace();
 					return new Computer();
 				}
