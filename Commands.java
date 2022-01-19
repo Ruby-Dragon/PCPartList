@@ -1,3 +1,5 @@
+import java.io.File;
+
 public class Commands
 {
 	public static void readCommand(String command)
@@ -15,7 +17,10 @@ public class Commands
 		switch (argv[0])
 		{
 			case "open":
-				//something
+				if (argv.length >= 2)
+				{
+					open(argv[1]);
+				}
 				break;
 
 			case "close":
@@ -33,6 +38,46 @@ public class Commands
 			case "purchase":
 				//purchase part
 				break;
+
+			case "new":
+				if (argv.length >= 2)
+				{
+					newFile(argv[1]);
+				}
+				break;
+
+			case "del":
+				//delete list
+				break;
 		}
 	}
+
+	private static void open(String filename)
+	{
+		String finalFilename = "/lists/" + filename + ".lst";
+		File tester = new File(finalFilename);
+		if (tester.exists())
+		{
+			Storage.openFile(finalFilename);
+		}
+		else
+		{
+			System.out.println("File: " + filename + ", does not exist");
+		}
+	}
+
+	private static void newFile(String filename)
+	{
+		String finalFilename = "/lists/" + filename + ".lst";
+		File tester = new File(finalFilename);
+		if (tester.exists())
+		{
+			System.out.println("File: " + filename + "already exists.");
+		}
+		else
+		{
+			Storage.openFile(finalFilename);
+		}
+	}
+
 }
