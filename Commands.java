@@ -6,10 +6,12 @@ public class Commands
 	{
 		String[] argv = command.split(" ");
 
+		/*
 		for (String arg : argv)
 		{
 			System.out.println(arg + ";");
 		}
+		*/
 
 		switch (argv[0])
 		{
