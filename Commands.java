@@ -4,15 +4,12 @@ public class Commands
 {
 	public static boolean readCommand(String command)
 	{
-		int argc = 0;
-		for (int i = 0; i < command.length(); i++)
+		String[] argv = command.split(" ");
+
+		for (String arg : argv)
 		{
-			if (command.charAt(i) == ' ')
-			{
-				argc++;
-			}
+			System.out.println(arg + ";");
 		}
-		String[] argv = command.split(" ", argc);
 
 		switch (argv[0])
 		{
@@ -55,10 +52,11 @@ public class Commands
 
 	private static void open(String filename)
 	{
-		String finalFilename = "/lists/" + filename + ".lst";
+		String finalFilename = "lists/" + filename + ".lst";
 		File tester = new File(finalFilename);
 		if (tester.exists())
 		{
+			System.out.println("?");
 			Storage.openFile(finalFilename);
 		}
 		else
@@ -69,7 +67,7 @@ public class Commands
 
 	private static void newFile(String filename)
 	{
-		String finalFilename = "/lists/" + filename + ".lst";
+		String finalFilename = "lists/" + filename + ".lst";
 		File tester = new File(finalFilename);
 		if (tester.exists())
 		{
@@ -77,6 +75,7 @@ public class Commands
 		}
 		else
 		{
+			System.out.println("?");
 			Storage.openFile(finalFilename);
 		}
 	}
