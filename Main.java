@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.Scanner;
 
 public class Main
 {
@@ -45,5 +46,17 @@ public class Main
 
 		//clearScreen();
 		//interface loop
+		Scanner readCommand = new Scanner(System.in);
+		readCommand.useDelimiter(System.lineSeparator());
+		boolean isRunning = true;
+		String currentCommand = "";
+		while (isRunning)
+		{
+			System.out.print("User@PCPartList: ");
+			currentCommand = readCommand.next();
+
+			isRunning = Commands.readCommand(currentCommand);
+		}
+		readCommand.close();
   }
 }

@@ -2,7 +2,7 @@ import java.io.File;
 
 public class Commands
 {
-	public static void readCommand(String command)
+	public static boolean readCommand(String command)
 	{
 		int argc = 0;
 		for (int i = 0; i < command.length(); i++)
@@ -25,7 +25,7 @@ public class Commands
 
 			case "close":
 				//exit program
-				break;
+				return false;
 
 			case "add":
 				//add part
@@ -50,6 +50,7 @@ public class Commands
 				//delete list
 				break;
 		}
+		return true;
 	}
 
 	private static void open(String filename)
