@@ -30,7 +30,7 @@ public class Main
 		//testing
     Computer comp = new Computer();
     Part cpu = new Part("Xeon e5 2690 v3", 54.24f, 180.0f);		
-		Part gpu = new Part("GTX 680", 200.0f, 195.0f, "https://www.ebay.com/itm/185251093760");
+		Part gpu = new Part("GTX 680", 200.0f, 195.0f, "https://www.ebay.com/itm/185251093760", true);
 		Part psu = new Part("Corsair CX750", 80.0f, 0.0f);
 
     comp.addPartToList(cpu);
@@ -43,7 +43,7 @@ public class Main
 
 		System.out.println(Storage.readFile());
 
-		clearScreen();
+		//clearScreen();
 		//interface loop
   }
 }

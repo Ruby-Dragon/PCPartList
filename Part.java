@@ -59,6 +59,16 @@ public class Part
     return name;
   }
 
+	public void setPurchased(boolean _purchased)
+	{
+		purchased = _purchased;
+	}
+
+	public boolean getPurchased()
+	{
+		return purchased;
+	}
+
   public float getCost()
   {
     return cost;

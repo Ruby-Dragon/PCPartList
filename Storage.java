@@ -108,7 +108,7 @@ public class Storage
 		{
 			encodedPart = "";
 			//add part vars separated by a /t on one line
-			encodedPart += currentPart.getName() + "\t" + currentPart.getCost() + "\t" + currentPart.getPowerDraw() + "\t" + currentPart.getRetailLink() + "\n";
+			encodedPart += currentPart.getName() + "\t" + currentPart.getCost() + "\t" + currentPart.getPowerDraw() + "\t" + currentPart.getRetailLink() + "\t" + currentPart.getPurchased() +"\n";
 			//add part to final string
 			finalStr += encodedPart;
 			//System.out.print(encodedPart);
@@ -200,11 +200,12 @@ public class Storage
 					lineIn += _pc.charAt(c);
 				}
 			}
-			constructVars = lineIn.split("\t", 4);
+			constructVars = lineIn.split("\t", 5);
 			
 			float partPrice = Float.parseFloat(constructVars[1]);
 			float power = Float.parseFloat(constructVars[2]);
-			Part temp = new Part(constructVars[0], partPrice, power, constructVars[3]);
+			boolean purchased = Boolean.parseBoolean(constructVars[4]);
+			Part temp = new Part(constructVars[0], partPrice, power, constructVars[3],purchased);
 			partsArray.add(temp);
 		}
 
