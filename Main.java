@@ -3,6 +3,14 @@ import java.util.Scanner;
 
 public class Main
 {
+
+	private static String userPrompt;
+
+	public static void setUserPrompt(String _prompt)
+	{
+		userPrompt = _prompt;
+	}
+
 	public static void clearScreen(){
     //Clears Screen in java
     try 
@@ -28,6 +36,7 @@ public class Main
 
   public static void main(String[] args)
   {
+		userPrompt = "User@PCPartList: ";
 		//clearScreen();
 		//interface loop
 		Scanner readCommand = new Scanner(System.in);
@@ -36,7 +45,7 @@ public class Main
 		String currentCommand = "";
 		while (isRunning)
 		{
-			System.out.print("User@PCPartList: ");
+			System.out.print(userPrompt);
 			currentCommand = readCommand.next();
 
 			//clearScreen();
