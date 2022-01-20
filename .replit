@@ -1,2 +1,2 @@
 language = "java10"
-run = "chmod +x run.sh |./run.sh"
+run = "javac Main.java ; java Main"
