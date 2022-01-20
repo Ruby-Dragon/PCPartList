@@ -31,3 +31,6 @@ replay_pid*
 
 #breakpoints
 .breakpoints
+
+#lst default directory
+lists/
