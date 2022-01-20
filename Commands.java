@@ -58,7 +58,7 @@ public class Commands
 		File tester = new File(finalFilename);
 		if (tester.exists())
 		{
-			System.out.println("?");
+			Main.clearScreen();
 			Storage.openFile(finalFilename);
 		}
 		else
@@ -77,7 +77,7 @@ public class Commands
 		}
 		else
 		{
-			System.out.println("?");
+			Main.clearScreen();
 			Storage.openFile(finalFilename);
 		}
 	}
