@@ -2,7 +2,7 @@ import java.io.File;
 
 public class Commands
 {
-
+	//computer currently open and ready for editing
 	static Computer currentComputer;
 
 	public static boolean readCommand(String command)
@@ -21,7 +21,12 @@ public class Commands
 			case "open":
 				if (argv.length >= 2)
 				{
+					Main.clearScreen();
 					open(argv[1]);
+					if (currentComputer != null)
+					{
+						System.out.println(currentComputer);
+					}
 				}
 				break;
 
@@ -46,7 +51,10 @@ public class Commands
 				{
 					newFile(argv[1]);
 					Storage.writeFile(currentComputer);
-					System.out.println(currentComputer);
+					if (currentComputer != null)
+					{
+						System.out.println(currentComputer);
+					}
 				}
 				break;
 
@@ -63,8 +71,8 @@ public class Commands
 		File tester = new File(finalFilename);
 		if (tester.exists())
 		{
-			Main.clearScreen();
 			Storage.openFile(finalFilename);
+			currentComputer = Storage.readFile();
 		}
 		else
 		{
