@@ -45,8 +45,7 @@ public class Commands
 				if (argv.length >= 2)
 				{
 					newFile(argv[1]);
-					currentComputer = new Computer();
-					currentComputer.setName(argv[1]);
+					Storage.writeFile(currentComputer);
 					System.out.println(currentComputer);
 				}
 				break;
@@ -85,6 +84,9 @@ public class Commands
 		{
 			Main.clearScreen();
 			Storage.openFile(finalFilename);
+			currentComputer = new Computer();
+			currentComputer.setName(currentComputer);
+			
 		}
 	}
 

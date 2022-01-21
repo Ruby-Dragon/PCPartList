@@ -57,7 +57,7 @@ public class Storage
 					catch (IOException e)
 					{
 						//write error
-						System.out.println("Write failed with IOException");
+						e.printStackTrace();
 						return;
 					}
 			}
