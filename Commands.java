@@ -2,6 +2,9 @@ import java.io.File;
 
 public class Commands
 {
+
+	static Computer currentComputer;
+
 	public static boolean readCommand(String command)
 	{
 		String[] argv = command.split(" ");
@@ -42,6 +45,9 @@ public class Commands
 				if (argv.length >= 2)
 				{
 					newFile(argv[1]);
+					currentComputer = new Computer();
+					currentComputer.setName(argv[1]);
+					System.out.println(currentComputer);
 				}
 				break;
 
