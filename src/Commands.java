@@ -85,8 +85,7 @@ public class Commands
 			Main.clearScreen();
 			Storage.openFile(finalFilename);
 			currentComputer = new Computer();
-			currentComputer.setName(currentComputer);
-			
+			currentComputer.setName(filename);
 		}
 	}
 

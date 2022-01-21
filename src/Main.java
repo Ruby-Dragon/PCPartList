@@ -23,7 +23,7 @@ public class Main
 				}
         else
 				{
-					//Linux\Unix clear screen (probably the best idea)
+					//Linux\Unix clear screen (probably the best implementation)
 					System.out.print("\033[H\033[2J");  
    				System.out.flush();  
 				} 

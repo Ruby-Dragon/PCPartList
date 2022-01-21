@@ -34,3 +34,6 @@ replay_pid*
 
 #lst default directory
 lists/
+
+#builds
+builds/

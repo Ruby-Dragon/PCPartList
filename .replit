@@ -1,2 +1,2 @@
 language = "java10"
-run = "javac Main.java ; java Main"
+run = "chmod +x compile.sh ; ./compile.sh ; java -classpath builds Main"

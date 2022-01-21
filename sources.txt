@@ -1,0 +1,5 @@
+./src/Computer.java
+./src/Part.java
+./src/Storage.java
+./src/Commands.java
+./src/Main.java
