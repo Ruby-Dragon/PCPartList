@@ -46,6 +46,10 @@ public class Commands
 				//purchase part
 				break;
 
+			case "edit":
+				//edit part
+				break;
+
 			case "new":
 				if (argv.length >= 2)
 				{
@@ -132,6 +136,17 @@ public class Commands
 		{
 			System.out.println("File: " + filename + ", does not exist.");
 		}
+	}
+
+	private static void add(String partName, float cost, float powerDraw)
+	{
+		Part newPart = new Part(partName, cost, powerDraw);
+		currentComputer.addPartToList(newPart);
+	}
+	private static void add(String partName, float cost, float powerDraw, String retailLink)
+	{
+		Part newPart = new Part(partName, cost, powerDraw, retailLink, false);
+		currentComputer.addPartToList(newPart);
 	}
 
 }
