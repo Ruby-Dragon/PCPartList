@@ -36,35 +36,45 @@ public class Commands
 
 			case "add":
 				//add part
-				if (argv.length == 2)
+				if (currentComputer !=null)
 				{
-					add(argv[1], 0.0f, 0.0f);
-				}
-				else if (argv.length == 4)
-				{
-					if (argv[2] != "" && argv[3] != "")
-					{
-						add(argv[1], Float.parseFloat(argv[2]), Float.parseFloat(argv[3]));
-					}
-					else
+					if (argv.length == 2)
 					{
 						add(argv[1], 0.0f, 0.0f);
+						System.out.println(currentComputer);
 					}
-				}
-				else if (argv.length >= 5)
-				{
-					if (argv[2] != "" && argv[3] != "")
+					else if (argv.length == 4)
 					{
-						add(argv[1], Float.parseFloat(argv[2]), Float.parseFloat(argv[3]), argv[4]);
+						if (argv[2] != "" && argv[3] != "")
+						{
+							add(argv[1], Float.parseFloat(argv[2]), Float.parseFloat(argv[3]));
+						}
+						else
+						{
+							add(argv[1], 0.0f, 0.0f);
+						}
+						System.out.println(currentComputer);
+					}
+					else if (argv.length >= 5)
+					{
+						if (argv[2] != "" && argv[3] != "")
+						{
+							add(argv[1], Float.parseFloat(argv[2]), Float.parseFloat(argv[3]), argv[4]);
+						}
+						else
+						{
+							add(argv[1], 0.0f, 0.0f, argv[4]);
+						}
+						System.out.println(currentComputer);
 					}
 					else
 					{
-						add(argv[1], 0.0f, 0.0f, argv[4]);
+						System.out.println("Incorrect use of add.");
 					}
 				}
 				else
 				{
-					System.out.println("Incorrect use of add.");
+					System.out.println("No List is open.");
 				}
 				break;
 
@@ -172,11 +182,15 @@ public class Commands
 	{
 		Part newPart = new Part(partName, cost, powerDraw);
 		currentComputer.addPartToList(newPart);
+		Storage.writeFile(currentComputer);
+		Main.clearScreen();
 	}
 	private static void add(String partName, float cost, float powerDraw, String retailLink)
 	{
 		Part newPart = new Part(partName, cost, powerDraw, retailLink, false);
 		currentComputer.addPartToList(newPart);
+		Storage.writeFile(currentComputer);
+		Main.clearScreen();
 	}
 
 }
