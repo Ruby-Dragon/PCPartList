@@ -14,6 +14,11 @@ public class Storage
 		currentFile = new File(filename);
 	}
 
+	public static void closeFile()
+	{
+		currentFile = null;
+	}
+
 	public static void writeFile(Computer _save)
 	{
 		//if a computer file is open

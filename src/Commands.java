@@ -60,6 +60,11 @@ public class Commands
 
 			case "del":
 				//delete list
+				if (argv.length >= 2)
+				{
+					deleteFile(argv[1]);
+					System.out.println("File deleted.");
+				}
 				break;
 		}
 		return true;
@@ -104,6 +109,28 @@ public class Commands
 			Storage.openFile(finalFilename);
 			currentComputer = new Computer();
 			currentComputer.setName(filename);
+		}
+	}
+
+	private static void deleteFile(String filename)
+	{
+		Class<?> c = Main.class;
+		String path = c.getResource(c.getSimpleName() + ".class").getPath().replace(c.getSimpleName() + ".class", "");
+
+		//System.out.println(path);
+
+		String finalFilename = path + "lists/" + filename + ".lst";
+		File tester = new File(finalFilename);
+		if (tester.exists())
+		{
+			Main.clearScreen();
+			tester.delete();
+			Storage.closeFile();
+			currentComputer = new Computer();
+		}
+		else
+		{
+			System.out.println("File: " + filename + ", does not exist.");
 		}
 	}
 
