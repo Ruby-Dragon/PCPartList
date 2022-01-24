@@ -67,7 +67,7 @@ public class Commands
 
 	private static void open(String filename)
 	{
-		String finalFilename = "lists/" + filename + ".lst";
+		String finalFilename = "builds/lists/" + filename + ".lst";
 		File tester = new File(finalFilename);
 		if (tester.exists())
 		{
@@ -76,13 +76,13 @@ public class Commands
 		}
 		else
 		{
-			System.out.println("File: " + filename + ", does not exist");
+			System.out.println("File: " + finalFilename + ", does not exist");
 		}
 	}
 
 	private static void newFile(String filename)
 	{
-		String finalFilename = "lists/" + filename + ".lst";
+		String finalFilename = "builds/lists/" + filename + ".lst";
 		File tester = new File(finalFilename);
 		if (tester.exists())
 		{

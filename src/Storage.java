@@ -76,7 +76,8 @@ public class Storage
 				//raw input
 				String raw;
 				//path of file
-				Path fileName = Path.of(currentFile.getName());
+				Path fileName = Path.of("builds/lists/" + currentFile.getName());
+				//System.out.println(fileName);
 				try
 				{
 					raw = Files.readString(fileName);
@@ -200,13 +201,16 @@ public class Storage
 					lineIn += _pc.charAt(c);
 				}
 			}
-			constructVars = lineIn.split("\t", 5);
 			
-			float partPrice = Float.parseFloat(constructVars[1]);
-			float power = Float.parseFloat(constructVars[2]);
-			boolean purchased = Boolean.parseBoolean(constructVars[4]);
-			Part temp = new Part(constructVars[0], partPrice, power, constructVars[3],purchased);
-			partsArray.add(temp);
+			if (lineIn != "")
+			{
+				constructVars = lineIn.split("\t", 5);
+				float partPrice = Float.parseFloat(constructVars[1]);
+				float power = Float.parseFloat(constructVars[2]);
+				boolean purchased = Boolean.parseBoolean(constructVars[4]);
+				Part temp = new Part(constructVars[0], partPrice, power, constructVars[3],purchased);
+				partsArray.add(temp);
+			}
 		}
 
 		return new Computer(partsArray, name);
