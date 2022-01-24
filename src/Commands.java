@@ -36,6 +36,36 @@ public class Commands
 
 			case "add":
 				//add part
+				if (argv.length == 2)
+				{
+					add(argv[1], 0.0f, 0.0f);
+				}
+				else if (argv.length == 4)
+				{
+					if (argv[2] != "" && argv[3] != "")
+					{
+						add(argv[1], Float.parseFloat(argv[2]), Float.parseFloat(argv[3]));
+					}
+					else
+					{
+						add(argv[1], 0.0f, 0.0f);
+					}
+				}
+				else if (argv.length >= 5)
+				{
+					if (argv[2] != "" && argv[3] != "")
+					{
+						add(argv[1], Float.parseFloat(argv[2]), Float.parseFloat(argv[3]), argv[4]);
+					}
+					else
+					{
+						add(argv[1], 0.0f, 0.0f, argv[4]);
+					}
+				}
+				else
+				{
+					System.out.println("Incorrect use of add.");
+				}
 				break;
 
 			case "rm":
