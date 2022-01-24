@@ -67,7 +67,12 @@ public class Commands
 
 	private static void open(String filename)
 	{
-		String finalFilename = "builds/lists/" + filename + ".lst";
+		Class<?> c = Main.class;
+		String path = c.getResource(c.getSimpleName() + ".class").getPath().replace(c.getSimpleName() + ".class", "");
+
+		//System.out.println(path);
+
+		String finalFilename = path + "lists/" + filename + ".lst";
 		File tester = new File(finalFilename);
 		if (tester.exists())
 		{
@@ -76,13 +81,18 @@ public class Commands
 		}
 		else
 		{
-			System.out.println("File: " + finalFilename + ", does not exist");
+			System.out.println("File: " + filename + ", does not exist");
 		}
 	}
 
 	private static void newFile(String filename)
 	{
-		String finalFilename = "builds/lists/" + filename + ".lst";
+		Class<?> c = Main.class;
+		String path = c.getResource(c.getSimpleName() + ".class").getPath().replace(c.getSimpleName() + ".class", "");
+
+		//System.out.println(path);
+
+		String finalFilename = path + "lists/" + filename + ".lst";
 		File tester = new File(finalFilename);
 		if (tester.exists())
 		{
