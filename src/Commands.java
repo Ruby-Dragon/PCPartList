@@ -99,7 +99,21 @@ public class Commands
 				break;
 
 			case "purchase":
-				//purchase part
+				if (currentComputer != null)
+				{
+					if (argv.length >= 2)
+					{
+						purchase(argv[1]);
+					}
+					else
+					{
+						System.out.println("No part specified.");
+					}
+				}
+				else
+				{
+					System.out.println("No list is open.");
+				}
 				break;
 
 			case "edit":
@@ -230,6 +244,20 @@ public class Commands
 			Main.clearScreen();
 			System.out.println(currentComputer);
 		}
+	}
+
+	public static void purchase(String partName)
+	{
+		for (int i =0; i < currentComputer.getPartsList().size(); i++)
+		{
+			if (currentComputer.getPartsList().get(i).getName().equals(partName))
+			{
+				currentComputer.getPartsList().get(i).setPurchased(true);
+			}
+		}
+		Storage.writeFile(currentComputer);
+		Main.clearScreen();
+		System.out.println(currentComputer);
 	}
 
 }
