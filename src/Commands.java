@@ -1,4 +1,5 @@
 import java.io.File;
+import java.util.ArrayList;
 
 public class Commands
 {
@@ -80,6 +81,21 @@ public class Commands
 
 			case "rm":
 				//remove part
+				if (currentComputer != null)
+				{
+					if (argv.length >= 2)
+					{
+						remove(argv[1]);
+					}
+					else
+					{
+						System.out.println("No part specified.");
+					}
+				}
+				else
+				{
+					System.out.println("No list is open.");
+				}
 				break;
 
 			case "purchase":
@@ -191,6 +207,29 @@ public class Commands
 		currentComputer.addPartToList(newPart);
 		Storage.writeFile(currentComputer);
 		Main.clearScreen();
+	}
+
+	private static void remove(String partName)
+	{
+		ArrayList<Part> newList = new ArrayList<Part>();
+		for (int i = 0; i < currentComputer.getPartsList().size(); i++)
+		{
+			if (!currentComputer.getPartsList().get(i).getName().equals(partName))
+			{
+				newList.add(currentComputer.getPartsList().get(i));
+			}
+		}
+		if (currentComputer.getPartsList().size() == newList.size())
+		{
+			System.out.println("The part with name: " + partName + ", was not found.");
+		}
+		else
+		{
+			currentComputer.setPartsList(newList);
+			Storage.writeFile(currentComputer);
+			Main.clearScreen();
+			System.out.println(currentComputer);
+		}
 	}
 
 }
