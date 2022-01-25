@@ -260,4 +260,16 @@ public class Commands
 		System.out.println(currentComputer);
 	}
 
+	public static void edit(String partName, String newName, float newPrice, float newPower)
+	{
+		Part newPart = new Part(newName, newPrice, newPower);
+		for (int i=0; i < currentComputer.getPartsList().size(); i++)
+		{
+			if (currentComputer.getPartsList().get(i).getName().equals(partName))
+			{
+				//figure it out i guess
+			}
+		}
+	}
+
 }
