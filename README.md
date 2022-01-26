@@ -33,6 +33,13 @@ This is written in Java because I like to suffer apparently.
 #### JAVA 11, AT LEAST, REQUIRED
 #### Complie.sh is only verified to work on Linux - Windows = maybe, OSX = maybe
 
+## Installation - for Linux and possibly OSX:
+
+	1. Download source files
+	2. Run Compile.sh
+	3. Move PCPartList.jar and Lists to wherever you want.
+	4. run with java -jar PCPartList.jar
+
 ## Licence:
 
 This software uses the GPL licence. Read the terms before using the source code.
