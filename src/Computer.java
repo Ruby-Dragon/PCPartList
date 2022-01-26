@@ -2,11 +2,15 @@ import java.util.ArrayList;
 
 public class Computer
 {
+	//variables
   private ArrayList<Part> partsList;
   private float totalCost;
 	private float totalPowerDraw;
 	private String name;
 
+
+	//constructors
+	//not used often if at all
   public Computer()
   {
     partsList = new ArrayList<Part>();
@@ -15,6 +19,7 @@ public class Computer
 		totalPowerDraw = 0.0f;
   }
 
+	//used a lot
   public Computer(ArrayList<Part> _list, String _name)
   {
     partsList = _list;
@@ -23,6 +28,7 @@ public class Computer
 		recalculatePowerDraw();
   }
 
+	//getters and setters
 	public String getName()
 	{
 		return name;
@@ -38,6 +44,7 @@ public class Computer
 		return totalPowerDraw;
 	}
 
+	//recalculates the powerdraw based on parts in the array
 	public void recalculatePowerDraw()
 	{
 		float sum = 0;
@@ -53,6 +60,7 @@ public class Computer
     return totalCost;
   }
 
+	//recalculates the cost based on parts in the array
  	public void recalculateCost()
   {
     float sum = 0;
@@ -82,6 +90,7 @@ public class Computer
 		recalculatePowerDraw();
   }
 
+	//returns a string in a nice format to print on screen
   public String toString()
   {
     String finalStr = "";

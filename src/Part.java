@@ -8,6 +8,7 @@ public class Part
 	private boolean purchased;
 
 	//constructors
+	//not really used
   public Part()
   {
     name = "";
@@ -38,14 +39,17 @@ public class Part
 	//toString override
   public String toString()
   {
+		//if it has no retail link
 		if (retailLink.equals(""))
 		{
+			//only append PURCHASED if the item is purchased
 			if (purchased)
 			{
 				return name + ", Price: $" + cost + ",\t Power Draw: " + powerDraw + "w,\t" + "PURCHASED";
 			}
 			return name + ", Price: $" + cost + ",\t Power Draw: " + powerDraw + "w";
 		}
+		//if it does have a retail link
 		if (purchased)
 		{
 			return name + ", Price: $" + cost + ",\t Power Draw: " + powerDraw + "w,\t Link: " + retailLink + ",\t PURCHASED";
@@ -53,7 +57,7 @@ public class Part
     return name + ", Price: $" + cost + ",\t Power Draw: " + powerDraw + "w,\t Link: " + retailLink;
   }
 
-	//getters and setters
+	//getters and setters - self explanitory
   public String getName()
   {
     return name;

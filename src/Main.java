@@ -3,9 +3,10 @@ import java.util.Scanner;
 
 public class Main
 {
-
+	//userprompt
 	private static String userPrompt;
 
+	//change userprompt
 	public static void setUserPrompt(String _prompt)
 	{
 		userPrompt = _prompt;
@@ -18,7 +19,7 @@ public class Main
 				//windows clear screen
         if (System.getProperty("os.name").contains("Windows"))
 				{
-					//hope this works
+					//should work - untested though
 					new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
 				}
         else
@@ -28,7 +29,7 @@ public class Main
    				System.out.flush();  
 				} 
     } 
-		catch (IOException | InterruptedException ex) 
+		catch (IOException | InterruptedException ex) //should not happen at all
 		{
 			ex.printStackTrace();
 		}
@@ -36,22 +37,28 @@ public class Main
 
   public static void main(String[] args)
   {
+		//default prompt
 		userPrompt = "User@PCPartList: ";
-		//clearScreen();
-		//interface loop
+		
+		//scanner for input
 		Scanner readCommand = new Scanner(System.in);
+		//use line separator as a delimiter
 		readCommand.useDelimiter(System.lineSeparator());
 		boolean isRunning = true;
+		//current command
 		String currentCommand = "";
+		//interface loop
 		while (isRunning)
 		{
+			//print prompt
 			System.out.print(userPrompt);
+			//read command
 			currentCommand = readCommand.next();
 
-			//clearScreen();
-
+			//interpret command
 			isRunning = Commands.readCommand(currentCommand);
 		}
+		//close scanner at close
 		readCommand.close();
   }
 }

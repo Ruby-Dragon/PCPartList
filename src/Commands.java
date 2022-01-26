@@ -8,24 +8,24 @@ public class Commands
 	//computer currently open and ready for editing
 	static Computer currentComputer;
 
+	//takes the current command and figures out what it is
 	public static boolean readCommand(String command)
 	{
+		//splits line in into an array
 		String[] argv = command.split(" ");
 
-		/*
-		for (String arg : argv)
-		{
-			System.out.println(arg + ";");
-		}
-		*/
-
+		//switch on first statement, the command
 		switch (argv[0])
 		{
 			case "open":
+				//check for next arg for command
 				if (argv.length >= 2)
 				{
-					Main.clearScreen();
+					//clear screen
+					Main.clearScreen(); 
+					//attempt to open file with arg filename
 					open(argv[1]);
+					//if it worked, print out the current computer
 					if (currentComputer != null)
 					{
 						System.out.println(currentComputer);
@@ -34,13 +34,15 @@ public class Commands
 				break;
 
 			case "close":
-				//exit program
+				//exit program, return false stops loop
 				return false;
 
 			case "add":
 				//add part
+				//check if file is open
 				if (currentComputer !=null)
 				{
+					//check for different args
 					if (argv.length == 2)
 					{
 						add(argv[1], 0.0f, 0.0f);
@@ -72,11 +74,13 @@ public class Commands
 					}
 					else
 					{
+						//if the args are incorrect
 						System.out.println("Incorrect use of add.");
 					}
 				}
 				else
 				{
+					//if no file has been opened or created
 					System.out.println("No List is open.");
 				}
 				break;
@@ -91,16 +95,19 @@ public class Commands
 					}
 					else
 					{
+						//if args are not correct
 						System.out.println("No part specified.");
 					}
 				}
 				else
 				{
+					//if no file is open or created
 					System.out.println("No list is open.");
 				}
 				break;
 
 			case "purchase":
+				//purchase part in computer
 				if (currentComputer != null)
 				{
 					if (argv.length >= 2)
@@ -109,11 +116,13 @@ public class Commands
 					}
 					else
 					{
+						//if args are incorrect
 						System.out.println("No part specified.");
 					}
 				}
 				else
 				{
+					//if no file is open or created
 					System.out.println("No list is open.");
 				}
 				break;
@@ -122,6 +131,7 @@ public class Commands
 				//edit part
 				if (currentComputer != null)
 				{
+					//check args, 2 different amounts allowed
 					if (argv.length == 5)
 					{
 						float newPower;
@@ -146,16 +156,19 @@ public class Commands
 					}
 					else
 					{
+						//if wrong args are used
 						System.out.println("Incorrect use of edit");
 					}
 				}
 				else
 				{
+					//if no file is opened or created
 					System.out.println("No list is open");
 				}
 				break;
 
 			case "new":
+				//create a new file
 				if (argv.length >= 2)
 				{
 					newFile(argv[1]);
@@ -172,7 +185,6 @@ public class Commands
 				if (argv.length >= 2)
 				{
 					deleteFile(argv[1]);
-					System.out.println("File deleted.");
 				}
 				break;
 		}
@@ -181,6 +193,7 @@ public class Commands
 
 	private static void open(String filename)
 	{
+		//get path to lists folder
 		Class<?> c = Main.class;
 		String path = c.getResource(c.getSimpleName() + ".class").getPath().replace(c.getSimpleName() + ".class", "");
 
@@ -189,9 +202,11 @@ public class Commands
 		temp = temp.getParent();
 
 		path = temp.toString();
+		//the reason this takes so much code is because Java will look inside of JAR
 
 		//System.out.println(path.substring(5));
 
+		//add .lst to end of file
 		String finalFilename = path.substring(5) + "/lists/" + filename + ".lst";
 		//System.out.println(finalFilename);
 		File tester = new File(finalFilename);
@@ -202,12 +217,14 @@ public class Commands
 		}
 		else
 		{
+			//if the file specified does not exist
 			System.out.println("File: " + filename + ", does not exist!");
 		}
 	}
 
 	private static void newFile(String filename)
 	{
+		//get path to lists folder
 		Class<?> c = Main.class;
 		String path = c.getResource(c.getSimpleName() + ".class").getPath().replace(c.getSimpleName() + ".class", "");
 
@@ -221,10 +238,12 @@ public class Commands
 
 		//System.out.println(path.substring(5));
 
+		//add .lst to end of filename
 		String finalFilename = path.substring(5) + "/lists/" + filename + ".lst";
 		File tester = new File(finalFilename);
 		if (tester.exists())
 		{
+			//if file already exists
 			System.out.println("File: " + filename + "already exists.");
 		}
 		else
@@ -238,28 +257,45 @@ public class Commands
 
 	private static void deleteFile(String filename)
 	{
+		//get path to lists folder
 		Class<?> c = Main.class;
 		String path = c.getResource(c.getSimpleName() + ".class").getPath().replace(c.getSimpleName() + ".class", "");
 
 		//System.out.println(path);
+		Path temp = Paths.get(path);
 
-		String finalFilename = path + "lists/" + filename + ".lst";
+		temp = temp.getParent();
+
+		path = temp.toString();
+
+		//add .lst to filename
+		String finalFilename = path.substring(5) + "/lists/" + filename + ".lst";
 		File tester = new File(finalFilename);
 		if (tester.exists())
 		{
 			Main.clearScreen();
+			if (currentComputer != null)
+			{
+				if (tester.getName().equals(currentComputer.getName() + ".lst"))
+				{
+					Main.setUserPrompt("User@PCPartList: ");
+				}
+			}
 			tester.delete();
 			Storage.closeFile();
-			currentComputer = new Computer();
+			currentComputer = null;
+			System.out.println("File deleted.");
 		}
 		else
 		{
+			//if file does not exist
 			System.out.println("File: " + filename + ", does not exist.");
 		}
 	}
 
 	private static void add(String partName, float cost, float powerDraw)
 	{
+		//make a new part from args and add to computer
 		Part newPart = new Part(partName, cost, powerDraw);
 		currentComputer.addPartToList(newPart);
 		Storage.writeFile(currentComputer);
@@ -267,6 +303,7 @@ public class Commands
 	}
 	private static void add(String partName, float cost, float powerDraw, String retailLink)
 	{
+		//create a new part from args and add to computer
 		Part newPart = new Part(partName, cost, powerDraw, retailLink, false);
 		currentComputer.addPartToList(newPart);
 		Storage.writeFile(currentComputer);
@@ -275,7 +312,9 @@ public class Commands
 
 	private static void remove(String partName)
 	{
+		//make a new array
 		ArrayList<Part> newList = new ArrayList<Part>();
+		//add all parts from old array except for specified part
 		for (int i = 0; i < currentComputer.getPartsList().size(); i++)
 		{
 			if (!currentComputer.getPartsList().get(i).getName().equals(partName))
@@ -285,10 +324,12 @@ public class Commands
 		}
 		if (currentComputer.getPartsList().size() == newList.size())
 		{
+			//if nothing changed between arrays
 			System.out.println("The part with name: " + partName + ", was not found.");
 		}
 		else
 		{
+			//set computer array to the new one created here
 			currentComputer.setPartsList(newList);
 			Storage.writeFile(currentComputer);
 			Main.clearScreen();
@@ -298,10 +339,12 @@ public class Commands
 
 	public static void purchase(String partName)
 	{
+		//search through array for part specified
 		for (int i =0; i < currentComputer.getPartsList().size(); i++)
 		{
 			if (currentComputer.getPartsList().get(i).getName().equals(partName))
 			{
+				//purchase part if it's name matches
 				currentComputer.getPartsList().get(i).setPurchased(true);
 			}
 		}
@@ -312,12 +355,15 @@ public class Commands
 
 	public static void edit(String partName, String newName, float newPrice, float newPower)
 	{
+		//make a new part and array
 		Part newPart = new Part(newName, newPrice, newPower);
 		ArrayList<Part> newArray = currentComputer.getPartsList();
+		//add all unspecified parts to new array
 		for (int i=0; i < currentComputer.getPartsList().size(); i++)
 		{
 			if (currentComputer.getPartsList().get(i).getName().equals(partName))
 			{
+				//replace part in location with new part
 				newArray.set(i, newPart);
 			}
 		}
@@ -329,6 +375,7 @@ public class Commands
 
 	public static void edit(String partName, String newName, float newPrice, float newPower, String retailLink)
 	{
+		//overload is same, except part has a retail link
 		Part newPart = new Part(newName, newPrice, newPower, retailLink, false);
 		ArrayList<Part> newArray = currentComputer.getPartsList();
 		for (int i=0; i < currentComputer.getPartsList().size(); i++)
