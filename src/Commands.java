@@ -1,4 +1,6 @@
 import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class Commands
@@ -118,6 +120,39 @@ public class Commands
 
 			case "edit":
 				//edit part
+				if (currentComputer != null)
+				{
+					if (argv.length == 5)
+					{
+						float newPower;
+						float newCost;
+						if (argv[3] != "" && argv[4] != "")
+						{
+							newPower = Float.parseFloat(argv[4]);
+							newCost = Float.parseFloat(argv[3]);
+							edit(argv[1], argv[2], newCost, newPower);
+						}
+					}
+					else if (argv.length >= 6)
+					{
+						float newPower;
+						float newCost;
+						if (argv[3] != "" && argv[4] != "")
+						{
+							newPower = Float.parseFloat(argv[4]);
+							newCost = Float.parseFloat(argv[3]);
+							edit(argv[1], argv[2], newCost, newPower, argv[5]);
+						}
+					}
+					else
+					{
+						System.out.println("Incorrect use of edit");
+					}
+				}
+				else
+				{
+					System.out.println("No list is open");
+				}
 				break;
 
 			case "new":
@@ -149,9 +184,16 @@ public class Commands
 		Class<?> c = Main.class;
 		String path = c.getResource(c.getSimpleName() + ".class").getPath().replace(c.getSimpleName() + ".class", "");
 
-		//System.out.println(path);
+		Path temp = Paths.get(path);
 
-		String finalFilename = path + "lists/" + filename + ".lst";
+		temp = temp.getParent();
+
+		path = temp.toString();
+
+		System.out.println(path.substring(5));
+
+		String finalFilename = path.substring(5) + "/lists/" + filename + ".lst";
+		System.out.println(finalFilename);
 		File tester = new File(finalFilename);
 		if (tester.exists())
 		{
@@ -160,7 +202,7 @@ public class Commands
 		}
 		else
 		{
-			System.out.println("File: " + filename + ", does not exist");
+			System.out.println("File: " + filename + ", does not exist!");
 		}
 	}
 
@@ -263,13 +305,35 @@ public class Commands
 	public static void edit(String partName, String newName, float newPrice, float newPower)
 	{
 		Part newPart = new Part(newName, newPrice, newPower);
+		ArrayList<Part> newArray = currentComputer.getPartsList();
 		for (int i=0; i < currentComputer.getPartsList().size(); i++)
 		{
 			if (currentComputer.getPartsList().get(i).getName().equals(partName))
 			{
-				//figure it out i guess
+				newArray.set(i, newPart);
 			}
 		}
+		currentComputer.setPartsList(newArray);
+		Storage.writeFile(currentComputer);
+		Main.clearScreen();
+		System.out.println(currentComputer);
+	}
+
+	public static void edit(String partName, String newName, float newPrice, float newPower, String retailLink)
+	{
+		Part newPart = new Part(newName, newPrice, newPower, retailLink, false);
+		ArrayList<Part> newArray = currentComputer.getPartsList();
+		for (int i=0; i < currentComputer.getPartsList().size(); i++)
+		{
+			if (currentComputer.getPartsList().get(i).getName().equals(partName))
+			{
+				newArray.set(i, newPart);
+			}
+		}
+		currentComputer.setPartsList(newArray);
+		Storage.writeFile(currentComputer);
+		Main.clearScreen();
+		System.out.println(currentComputer);
 	}
 
 }
