@@ -190,10 +190,10 @@ public class Commands
 
 		path = temp.toString();
 
-		System.out.println(path.substring(5));
+		//System.out.println(path.substring(5));
 
 		String finalFilename = path.substring(5) + "/lists/" + filename + ".lst";
-		System.out.println(finalFilename);
+		//System.out.println(finalFilename);
 		File tester = new File(finalFilename);
 		if (tester.exists())
 		{
@@ -213,7 +213,15 @@ public class Commands
 
 		//System.out.println(path);
 
-		String finalFilename = path + "lists/" + filename + ".lst";
+		Path temp = Paths.get(path);
+
+		temp = temp.getParent();
+
+		path = temp.toString();
+
+		//System.out.println(path.substring(5));
+
+		String finalFilename = path.substring(5) + "/lists/" + filename + ".lst";
 		File tester = new File(finalFilename);
 		if (tester.exists())
 		{

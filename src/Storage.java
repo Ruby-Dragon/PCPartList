@@ -80,13 +80,14 @@ public class Storage
 			{
 				//raw input
 				String raw;
-				//path of file
-				Class<?> c = Main.class;
-				String path = c.getResource(c.getSimpleName() + ".class").getPath().replace(c.getSimpleName() + ".class", "");
+				//path of file - old and unneeded
+				//Class<?> c = Main.class;
+				//String path = c.getResource(c.getSimpleName() + ".class").getPath().replace(c.getSimpleName() + ".class", "");
 
 				//System.out.println(path);
 
-				Path fileName = Path.of(path + "lists/" + currentFile.getName());
+				//Path fileName = Path.of(path + "lists/" + currentFile.getName());
+				Path fileName = Path.of(currentFile.getAbsolutePath());
 				//System.out.println(fileName);
 				try
 				{
