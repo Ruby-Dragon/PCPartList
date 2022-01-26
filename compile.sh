@@ -1,5 +1,7 @@
 #!/bin/sh
 
+#GNU Public Licence v3, 2022, Ruby-Dragon
+
 if [ ! -d "builds/lists" ]
 then
 	mkdir "builds/lists"
